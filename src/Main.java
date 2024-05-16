@@ -1,13 +1,25 @@
 public class Main {
     public static void main(String[] args) {
         Words words = new Words();
-        Input input = new Input();
+        Commands commands = new Commands();
         Guess guess = new Guess();
 
-        input.startGame();
+        commands.startGame();
         String randomWord = words.getRandomWord();
-        System.out.println(randomWord);
         guess.displayInitial(randomWord);
-        System.out.println(guess.getCurrentGuess());
+        do {
+
+            System.out.println(guess.getCurrentGuess());
+            guess.checkGuess();
+            System.out.println();
+            guess.correctGuess();
+            System.out.println();
+            guess.checkFinishGame();
+        } while (!guess.checkFinishGame() && guess.getGuessCount() > 0);
+        if(guess.getGuessCount() <= 0) {
+           commands.endGameLoss();
+        } else {
+            commands.endGameWin();
+        }
     }
 }

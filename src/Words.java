@@ -8,6 +8,6 @@ public class Words {
     private Random random = new Random();
 
     public String getRandomWord() {
-        return words.get(random.nextInt(words.size()));
+        return words.get(random.nextInt(words.size())).toLowerCase();
     }
 }
