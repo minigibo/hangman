@@ -9,7 +9,7 @@ public class Main {
         guess.displayInitial(randomWord);
         do {
 
-            System.out.println(guess.getCurrentGuess());
+            System.out.println(guess.getDisplayedWord());
             guess.checkGuess();
             System.out.println();
             guess.correctGuess();

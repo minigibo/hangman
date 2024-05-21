@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Guess {
 
     // arrays and variables
-    private ArrayList currentGuess = new ArrayList<>();
-    private ArrayList currentWord = new ArrayList();
+    private ArrayList displayedWord = new ArrayList<>();
+    private ArrayList targetWord = new ArrayList();
     private ArrayList guessedLetters = new ArrayList();
     private int guessCount = 10;
     private boolean correctGuess = false;
@@ -25,15 +24,15 @@ public class Guess {
         this.guessCount = guessCount;
     }
 
-    public void setCurrentGuess(ArrayList currentGuess) {
-        this.currentGuess = currentGuess;
+    public void setDisplayedWord(ArrayList displayedWord) {
+        this.displayedWord = displayedWord;
     }
 
-    public void setCurrentWord(ArrayList currentWord) {
-        this.currentWord = currentWord;
+    public void setTargetWord(ArrayList targetWord) {
+        this.targetWord = targetWord;
     }
 
-    public void alterCurrentGuess(ArrayList currentGuess, int index, char mod) {
+    public void updateDisplayedWord(ArrayList currentGuess, int index, char mod) {
         currentGuess.set(index, mod);
     }
 
@@ -51,24 +50,24 @@ public class Guess {
 
     public String displayInitial(String word) {
         for (int i = 0; i < word.length(); i++) {
-            currentGuess.add(" _ ");
-            currentWord.add(word.charAt(i));
+            displayedWord.add(" _ ");
+            targetWord.add(word.charAt(i));
         }
-        return currentGuess.toString();
+        return displayedWord.toString();
     }
 
-    public String getCurrentGuess() {
+    public String getDisplayedWord() {
         String userDisplay = "";
-        for (int i = 0; i < currentGuess.size(); i++) {
-            userDisplay += currentGuess.get(i);
+        for (int i = 0; i < displayedWord.size(); i++) {
+            userDisplay += displayedWord.get(i);
         }
         return userDisplay;
     }
 
-    public String getCurrentWord() {
+    public String getTargetWord() {
         String userDisplay = "";
-        for (int i = 0; i < currentWord.size(); i++) {
-            userDisplay += currentWord.get(i);
+        for (int i = 0; i < targetWord.size(); i++) {
+            userDisplay += targetWord.get(i);
         }
         return userDisplay;
     }
@@ -77,6 +76,12 @@ public class Guess {
         System.out.println("Enter a letter");
         String userInput = scanner.nextLine().toLowerCase();
         char guessedLetter = userInput.charAt(0);
+        while (userInput.length()>1) {
+            System.out.println("Only enter one letter");
+            System.out.println("Please enter one letter");
+            userInput = scanner.nextLine().toLowerCase();
+        }
+
         while (guessedLetters.contains(guessedLetter)) {
             System.out.println("You have already entered this letter");
             System.out.println("Please enter a different letter");
@@ -90,17 +95,11 @@ public class Guess {
             userInput = scanner.nextLine().toLowerCase();
         }
 
-        while (userInput.length()>1) {
-            System.out.println("Only enter one letter");
-            System.out.println("Please enter one letter");
-            userInput = scanner.nextLine().toLowerCase();
-        }
-
         guessedLetters.add(guessedLetter);
 
-        for (int i = 0; i < (getCurrentWord()).length(); i++) {
-            if (getCurrentWord().charAt(i) == userInput.charAt(0)) {
-                alterCurrentGuess(currentGuess, i, userInput.charAt(0));
+        for (int i = 0; i < (getTargetWord()).length(); i++) {
+            if (getTargetWord().charAt(i) == userInput.charAt(0)) {
+                updateDisplayedWord(displayedWord, i, userInput.charAt(0));
                 correctGuess= true;
             }
         }
@@ -108,6 +107,6 @@ public class Guess {
 
     public boolean checkFinishGame() {
         String underscore = " _ ";
-        return !getCurrentGuess().contains(underscore);
+        return !getDisplayedWord().contains(underscore);
     }
 }
