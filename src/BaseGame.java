@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Guess {
+public abstract class BaseGame {
 
     // arrays and variables
-    private ArrayList displayedWord = new ArrayList<>();
-    private ArrayList targetWord = new ArrayList();
-    private ArrayList guessedLetters = new ArrayList();
-    private int guessCount = 10;
-    private boolean correctGuess = false;
-    private Scanner scanner = new Scanner(System.in);
+    protected ArrayList displayedWord = new ArrayList<>();
+    protected ArrayList targetWord = new ArrayList();
+    protected ArrayList guessedLetters = new ArrayList();
+    protected int guessCount = 10;
+    protected boolean correctGuess = false;
+    protected Scanner scanner = new Scanner(System.in);
 
     // getters and setters
     public int getGuessCount() {
@@ -37,6 +37,8 @@ public class Guess {
     }
 
     // methods
+    public abstract void checkGuess();
+
     public void correctGuess() {
         if(!correctGuess) {
             guessCount -= 1;
@@ -72,38 +74,7 @@ public class Guess {
         return userDisplay;
     }
 
-    public void checkGuess() {
-        System.out.println("Enter a letter");
-        String userInput = scanner.nextLine().toLowerCase();
-        char guessedLetter = userInput.charAt(0);
-        while (userInput.length()>1) {
-            System.out.println("Only enter one letter");
-            System.out.println("Please enter one letter");
-            userInput = scanner.nextLine().toLowerCase();
-        }
 
-        while (guessedLetters.contains(guessedLetter)) {
-            System.out.println("You have already entered this letter");
-            System.out.println("Please enter a different letter");
-            userInput = scanner.nextLine().toLowerCase();
-            guessedLetter = userInput.charAt(0);
-        }
-
-        while (userInput.isEmpty() || userInput.matches(".*[0-9].*")) {
-            System.out.println("Invalid input");
-            System.out.println("Please enter valid letter");
-            userInput = scanner.nextLine().toLowerCase();
-        }
-
-        guessedLetters.add(guessedLetter);
-
-        for (int i = 0; i < (getTargetWord()).length(); i++) {
-            if (getTargetWord().charAt(i) == userInput.charAt(0)) {
-                updateDisplayedWord(displayedWord, i, userInput.charAt(0));
-                correctGuess= true;
-            }
-        }
-    }
 
     public boolean checkFinishGame() {
         String underscore = " _ ";
