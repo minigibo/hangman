@@ -10,4 +10,8 @@ public class Words {
     public String getRandomWord() {
         return words.get(random.nextInt(words.size())).toLowerCase();
     }
+
+    public List<String> getWordsList() {
+        return words;
+    }
 }
