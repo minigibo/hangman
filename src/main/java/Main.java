@@ -34,6 +34,7 @@ public class Main {
                 System.out.println();
                 game.correctGuess();
                 System.out.println();
+                game.drawHangman();
             } while (!game.checkFinishGame() && game.getGuessCount() > 0);
 
             if (game.getGuessCount() <= 0) {

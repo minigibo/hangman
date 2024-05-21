@@ -1,4 +1,8 @@
 public class EasyHangman extends BaseGame{
+    public EasyHangman() {
+        this.isHardMode = false;
+    }
+
     @Override
     public void checkGuess() {
         System.out.println("Enter a letter");
@@ -32,5 +36,6 @@ public class EasyHangman extends BaseGame{
                 correctGuess= true;
             }
         }
+        drawHangman();
     }
 }

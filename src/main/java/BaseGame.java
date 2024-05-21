@@ -7,9 +7,11 @@ public abstract class BaseGame {
     protected ArrayList displayedWord = new ArrayList<>();
     protected ArrayList targetWord = new ArrayList();
     protected ArrayList guessedLetters = new ArrayList();
-    protected int guessCount = 10;
+    protected int guessCount = 8;
     protected boolean correctGuess = false;
     protected Scanner scanner = new Scanner(System.in);
+    private DrawGame drawGame = new DrawGame();
+    protected boolean isHardMode;
 
     // getters and setters
     public int getGuessCount() {
@@ -37,7 +39,12 @@ public abstract class BaseGame {
     }
 
     // methods
+    public void drawHangman() {
+        drawGame.drawHangman(getGuessCount(), isHardMode);
+    }
+
     public abstract void checkGuess();
+
 
     public void correctGuess() {
         if(!correctGuess) {

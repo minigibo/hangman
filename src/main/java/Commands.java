@@ -17,7 +17,7 @@ public class Commands {
         String userName = scanner.nextLine();
         setUserName(userName);
         System.out.println("Hello " + userName + " let's play hangman");
-        System.out.println("You have 10 lives to guess the word (letters only), hard mode will cost 2 guesses for each wrong answer...");
+        System.out.println("You have 8 lives to guess the word (letters only), hard mode will cost 2 guesses for each wrong answer...");
         System.out.println("Good luck!");
         System.out.println("Press enter to begin");
         scanner.nextLine();
