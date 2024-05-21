@@ -11,10 +11,16 @@ public class Main {
 
         do {
             String randomWord = words.getRandomWord();
-            System.out.println("Choose difficulty: Easy (1) or Hard (2)");
-            int difficulty = scanner.nextInt();
-            scanner.nextLine();
+            String difficultyInput;
+            int difficulty = 0;
+            System.out.println("Choose difficulty (type the number): Easy (1) or Hard (2)");
+            difficultyInput = scanner.nextLine();
+            while (!difficultyInput.equals("1") && !difficultyInput.equals("2")) {
+                System.out.println("Invalid input. Please enter 1 for Easy or 2 for Hard.");
+                difficultyInput = scanner.nextLine();
+            }
 
+            difficulty = Integer.parseInt(difficultyInput);
             if (difficulty == 1) {
                 game = new EasyHangman();
             } else {
@@ -35,8 +41,6 @@ public class Main {
             } else {
                playAgain = commands.endGameWin();
             }
-
         } while (playAgain);
-
     }
 }

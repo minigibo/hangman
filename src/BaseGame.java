@@ -49,7 +49,6 @@ public abstract class BaseGame {
         }
     }
 
-
     public String displayInitial(String word) {
         for (int i = 0; i < word.length(); i++) {
             displayedWord.add(" _ ");
@@ -73,8 +72,6 @@ public abstract class BaseGame {
         }
         return userDisplay;
     }
-
-
 
     public boolean checkFinishGame() {
         String underscore = " _ ";
